@@ -1,0 +1,12 @@
+ungourped:
+webserver:
+  hosts:
+    tiberna-rasp-002:
+      vars:
+        x: 5
+nodes:
+  hosts:
+    tiberna-rasp-002:
+      vars:
+        x: 8
+    tiberna-rasp-003:
