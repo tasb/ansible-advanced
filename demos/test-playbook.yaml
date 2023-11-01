@@ -1,7 +1,0 @@
----
-- name: Create new user, group, and SSH key on all hosts
-  hosts: all
-  tasks:
-    - name: Create a new group
-      debug:
-         var: x

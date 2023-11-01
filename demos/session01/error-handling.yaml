@@ -1,0 +1,27 @@
+---
+- name: Error handling
+  hosts: nodes
+  gather_facts: no
+  vars:
+    date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
+  tasks:
+    - apt:
+        name: some_unknown_package
+        state: present
+      ignore_errors: yes
+      ignore_unreachable: yes
+    
+    - name: Add random data to a file
+      shell: head -c 1M </dev/urandom >> "/tmp/tmpfile_{{ date }}"
+      when: "'003' in inventory_hostname"
+    
+    - name: Check file size
+      ansible.builtin.stat:
+        path: "/tmp/tmpfile_{{ date }}"
+      register: result
+      failed_when: 
+        - result.stat.exists
+        - result.stat.size > 2000000
+
+    - name: Ping hosts
+      ping:
