@@ -1,0 +1,29 @@
+---
+- name: Create group if needed
+  group:
+    name: "{{ group_name }}"
+    state: present
+
+- name: Create user
+  user:
+    name: "{{ username }}"
+    group: "{{ group_name }}"
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: ".ssh/id_rsa"
+    createhome: "{{ create_home }}"
+
+- name: Ensure home subfolders exist
+  file:
+    path: "/home/{{ username }}/{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ group_name }}"
+    mode: '0755'
+  loop: "{{ home_subfolders }}"
+
+- name: Fetch private SSH key to control node
+  fetch:
+    src: "/home/{{ username }}/.ssh/id_rsa"
+    dest: "{{ destination_path_on_control_node }}/{{ inventory_hostname }}_{{ username }}_id_rsa"
+    flat: yes

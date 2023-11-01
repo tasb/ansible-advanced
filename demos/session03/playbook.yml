@@ -1,0 +1,42 @@
+- name: Error handling using handlers
+  hosts: nodes
+  gather_facts: no
+  become: yes
+  vars:
+    users_list: 
+      - john_doe
+      - jane_doe
+  roles:
+    - role: ./roles/user_setup
+      vars:
+        username: john_doe
+        group_name: staff
+        destination_path_on_control_node: "/home/ubuntu/ssh_keys"
+        create_home: yes
+        home_subfolders:
+          - documents
+          - downloads
+          - tmp
+          - configs
+          - projects
+    - role: ./roles/user_setup
+      vars:
+        username: jane_doe
+        group_name: staff
+        destination_path_on_control_node: "/home/ubuntu/ssh_keys"
+        create_home: yes
+        home_subfolders:
+          - documents
+          - downloads
+
+  tasks:
+    - name: Ping hosts
+      ping:
+
+    - name: Check if folder exists
+      ansible.builtin.stat:
+        path: "/home/{{ item }}"
+      register: result
+      loop: "{{ users_list }}"
+
+
