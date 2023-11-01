@@ -1,0 +1,43 @@
+---
+
+- name: Testing blocks
+  hosts: nodes
+  gather_facts: no
+  tasks:
+    - block:
+      - name: Print a message
+        debug:
+          msg: 'I execute normally'
+        changed_when: true
+        # failed_when: true
+
+      - name: Force a failure
+        command: /bin/false
+      rescue:
+        - name: All is good if the first task failed
+          when: ansible_failed_task.name == 'Print a message'
+          debug:
+            msg: All is good!
+
+        - name: All is good if the first task failed
+          when: ansible_failed_task.name == 'Force a failure'
+          ansible.builtin.fail:
+            msg: It is still failed!!!
+
+      always:
+      - name: Always run this
+        ansible.builtin.debug:
+          msg: Always run this
+
+    - name: Print another message
+      debug:
+        msg: 'I execute after block'
+
+  handlers:
+    - name: Handler 1
+      debug:
+        msg: "Handler 1"
+    
+    - name: Handler 2
+      debug:
+        msg: "Handler 2"

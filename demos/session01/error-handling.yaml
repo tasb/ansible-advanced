@@ -1,6 +1,5 @@
----
-- name: Error handling
-  hosts: nodes
+- name: Error handling using handlers
+  hosts: all
   gather_facts: no
   vars:
     date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
@@ -8,8 +7,8 @@
     - apt:
         name: some_unknown_package
         state: present
-      ignore_errors: yes
-      ignore_unreachable: yes
+      # ignore_errors: yes
+      # ignore_unreachable: yes
     
     - name: Add random data to a file
       shell: head -c 1M </dev/urandom >> "/tmp/tmpfile_{{ date }}"
@@ -19,9 +18,10 @@
       ansible.builtin.stat:
         path: "/tmp/tmpfile_{{ date }}"
       register: result
+      #any_errors_fatal: true
       failed_when: 
         - result.stat.exists
-        - result.stat.size > 2000000
+        - result.stat.size > 3000000
 
     - name: Ping hosts
       ping:

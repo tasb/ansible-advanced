@@ -1,0 +1,48 @@
+---
+
+- name: Error handling
+  hosts: nodes
+  gather_facts: no
+  # force_handlers: True
+  tasks:
+    - name: Print a message
+      debug:
+        msg: 'I execute normally'
+      # changed_when: true
+      notify:
+        - Handler 1
+        - Handler 2
+    
+    # - meta: flush_handlers
+  
+    # - apt:
+    #     name: some_unknown_package
+    #     state: present
+    #     ignore_errors: yes    
+
+    - name: Task 003
+      debug:
+        msg: "Task 003"
+      when: "'003' in inventory_hostname"
+      notify: Handler 3
+
+    - name: Ping hosts
+      ping:
+
+  handlers:
+    - name: Handler 1
+      debug:
+        msg: "Handler 1"
+    
+    - name: Handler 2
+      debug:
+        msg: "Handler 2"
+
+    - name: Handler 3
+      debug:
+        msg: "Handler 3"
+
+    - name: Handler 4
+      debug:
+        msg: "Handler 4"
+      listen: Handler 2
