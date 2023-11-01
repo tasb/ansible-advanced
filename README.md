@@ -22,9 +22,13 @@ To perform the demos shared during the sessions you will need to have the follow
 
 Get access to the content used during sessions.
 
+1. [Error Handling](slides/01.ErrorHandling.pdf)
+
 ## Demos
 
 Here you may find the files used on demos.
+
+1. [Error Handling](demos/session01/)
 
 ## Feedback
 
