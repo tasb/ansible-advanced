@@ -1,0 +1,18 @@
+- name: Error handling using handlers
+  hosts: nodes
+  gather_facts: no
+  #strategy: free
+  tasks:
+    - name: Read users from CSV
+      set_fact:
+        services_list: "{{ lookup('file', './services.conf').splitlines() }}"
+
+    - name: Check service status
+      service:
+        name: "{{ item }}"
+        state: started
+      loop: "{{ services_list }}"
+
+    - name: Ping hosts
+      ping:
+
