@@ -4,30 +4,19 @@
   become: yes
   vars:
     users_list: 
-      - john_doe
-      - jane_doe
+      - tiago
+      - tiago2
+    group_name: staff
+    destination_path_on_control_node: "/home/ubuntu/ssh_keys"
+    create_home: yes
+    home_subfolders:
+      - documents
+      - downloads
+      - tmp
+      - configs
+      - projects
   roles:
-    - role: ./roles/user_setup
-      vars:
-        username: john_doe
-        group_name: staff
-        destination_path_on_control_node: "/home/ubuntu/ssh_keys"
-        create_home: yes
-        home_subfolders:
-          - documents
-          - downloads
-          - tmp
-          - configs
-          - projects
-    - role: ./roles/user_setup
-      vars:
-        username: jane_doe
-        group_name: staff
-        destination_path_on_control_node: "/home/ubuntu/ssh_keys"
-        create_home: yes
-        home_subfolders:
-          - documents
-          - downloads
+    - role: ./roles/user_setup_step6
 
   tasks:
     - name: Ping hosts

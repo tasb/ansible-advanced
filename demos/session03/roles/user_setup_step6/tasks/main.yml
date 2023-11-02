@@ -1,0 +1,11 @@
+---
+- name: Create group if needed
+  group:
+    name: "{{ group_name }}"
+    state: present
+
+- name: Crete user and subsfolders
+  include_tasks: tasks.yml
+  loop: "{{ users_list }}"
+  loop_control:
+    loop_var: username

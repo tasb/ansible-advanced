@@ -1,0 +1,12 @@
+---
+users_list: 
+  - xpto
+  - xpto2
+group_name: newgroup
+create_home: yes
+home_subfolders:
+  - documents
+  - downloads
+  - tmp
+  - configs
+destination_path_on_control_node: "/path/to/store/keys"
