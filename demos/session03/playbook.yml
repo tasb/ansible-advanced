@@ -1,4 +1,4 @@
-- name: Error handling using handlers
+- name: Create users using roles
   hosts: nodes
   gather_facts: no
   become: yes

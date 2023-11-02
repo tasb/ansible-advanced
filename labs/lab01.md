@@ -211,6 +211,32 @@ ansible-playbook localhost setup_user.yml
 
 If prompted, enter the SSH password for the target server.
 
+
+## Step 6: Change role to receive a list of users
+
+Navigate to the defaults directory of the role:
+
+```bash
+cd roles/user_setup/defaults
+```
+
+Edit the main.yml file using a text editor (e.g., nano, vim, or any editor of your choice):
+
+```bash
+nano main.yml
+```
+
+Replace the content to:
+
+```yaml
+---
+users_list: 
+  - john_doe
+  - jane_doe
+```
+
+Now you need to change your tasks to receive a list of users and create a loop to create all users.
+
 ## Conclusion
 
 You've successfully created an Ansible role named user_setup and executed it using a playbook. This role sets up a user, generates an SSH key for the user, and fetches the SSH key to the control node. This hands-on lab provides a foundational understanding of Ansible roles and playbooks for novice users.

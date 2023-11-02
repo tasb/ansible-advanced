@@ -1,9 +1,9 @@
-- name: Error handling using handlers
+- name: Using lookup
   hosts: nodes
   gather_facts: no
-  #strategy: free
+  # strategy: free
   tasks:
-    - name: Read users from CSV
+    - name: Read services from file
       set_fact:
         services_list: "{{ lookup('file', './services.conf').splitlines() }}"
 
