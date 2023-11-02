@@ -54,6 +54,16 @@ Use the ansible-galaxy command to create a new role structure:
 ansible-galaxy init user_setup
 ```
 
+Take some time to look into the directory structure created by the ansible-galaxy command.
+
+Open file `meta/main.yml` and check the content.
+
+On this file, beside specifying role dependencies, you can also specify the role's author, supported platforms, and other metadata.
+
+On role root folder, you may open Readme.md and check the content.
+
+On this file, you may see a readme template that you can use to document your role. This is important when you want to share your role with others, using Ansible Galaxy or even on an internal repository.
+
 ## Step 2: Define Default Variables for the Role
 
 Navigate to the defaults directory of the role:
