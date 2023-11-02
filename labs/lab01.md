@@ -226,7 +226,7 @@ Edit the main.yml file using a text editor (e.g., nano, vim, or any editor of yo
 nano main.yml
 ```
 
-Replace the content to:
+Replace variable `username` with the following:
 
 ```yaml
 ---
@@ -236,6 +236,8 @@ users_list:
 ```
 
 Now you need to change your tasks to receive a list of users and create a loop to create all users.
+
+Then you need to change your playbook to change the way you call your role.
 
 ## Conclusion
 
