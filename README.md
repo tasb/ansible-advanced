@@ -46,6 +46,7 @@ Here you may find the files used on demos.
 Here you may find hands-on labs.
 
 1. [Creating and Executing the user_setup Role in Ansible](labs/lab01.md)
+2. [Using Jinja2 Templates](labs/lab02.md)
 
 ## Feedback
 
