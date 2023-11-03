@@ -1,17 +1,24 @@
 - name: Using vaults
   hosts: nodes
   gather_facts: no
+  vars:
+    bd_pass: ""
   tasks:
     - name: Display secret password from the first vault
       debug:
         var: bd_pass
 
-    - name: Read content of the encrypted file
+    - name: Copy encrypted file
       copy:
         src: confidential_data.txt
         dest: /tmp/confidential_data.txt
 
-    - name: Display content of the encrypted file
-      cat:
-        path: /tmp/confidential_data.txt
+    - name: Display file contents
+      command: cat /tmp/confidential_data.txt
+      register: command_output
+
+    - name: Print to console
+      debug:
+        msg: "{{command_output.stdout}}"
+
 

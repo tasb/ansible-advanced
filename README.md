@@ -26,6 +26,7 @@ Get access to the content used during sessions.
 2. [Lookups](slides/02.Lookups.pdf)
 3. [Roles](slides/03.Roles.pdf)
 4. [Ansible Vault](slides/04.AnsibleVault.pdf)
+5. [Templates](slides/05.Templates.pdf)
 
 ## Demos
 
@@ -35,6 +36,7 @@ Here you may find the files used on demos.
 2. [Lookups](demos/session02/)
 3. [Roles](demos/session03/)
 4. [Ansible Vault](demos/session04/)
+5. [Templates](demos/session05/)
 
 ## Labs
 
