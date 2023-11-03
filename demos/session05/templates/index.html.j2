@@ -6,7 +6,7 @@
     <title>Welcome to Nginx</title>
 </head>
 <body>
-    <h1>Welcome to Nginx on {{ ansible_hostname }}</h1>
+    <h1>Welcome to Nginx on {{ ansible_hostname | upper }}</h1>
     <p>Today's date is: {{ ansible_date_time.date }}</p>
 </body>
 </html>
